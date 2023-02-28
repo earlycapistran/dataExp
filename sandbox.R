@@ -7,3 +7,4 @@ library("pastecs")
 stat.desc(penguins)
 
 analyseNlsResiduals(penguins, body_mass_g)
+

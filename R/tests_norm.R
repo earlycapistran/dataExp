@@ -10,9 +10,10 @@
 #' @param variable Variable name passed as a string
 #' @return A plot grid with normality plot, histogram, density plot, and 
 #' histogram with normality curve. Prints Shapiro-Wilke test results.
+#' @usage 
+#' test_norm(iris, "Sepal.Length")
 #' @export
-#' @example 
-#' test_normality(iris, "Sepal.Length")
+
 #' 
 
 tests_norm <- function(data, variable) {

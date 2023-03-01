@@ -17,8 +17,6 @@
 #' 
 
 tests_norm <- function(data, variable) {
-  # Load library
-  library("ggpubr")
 
   # Make normality plot ---
   par(mfrow = c(2, 2)) # set up grid

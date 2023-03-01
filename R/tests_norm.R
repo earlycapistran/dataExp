@@ -3,11 +3,13 @@
 # earlyc@stanford.edu, February 2023
 # =============================================================================
 
-#' Performs Shapiro-Wilk test and makes normality plots (qq)
+#' Performs Shapiro-Wilk test and makes normality plot (qq), density plot,
+#' histogram, and histogram with normality curve.
 #' 
-#' @param data a dataframe
-#' @param variable variable name passed as a string
-#' @return normality plot and Shapiro-Wilke test results
+#' @param data A dataframe
+#' @param variable Variable name passed as a string
+#' @return A plot grid with normality plot, histogram, density plot, and 
+#' histogram with normality curve. Prints Shapiro-Wilke test results.
 #' @export
 #' @example 
 #' test_normality(iris, "Sepal.Length")

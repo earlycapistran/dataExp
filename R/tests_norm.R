@@ -13,7 +13,6 @@
 #' @usage 
 #' test_norm(iris, "Sepal.Length")
 #' @export
-
 #' 
 
 tests_norm <- function(data, variable) {

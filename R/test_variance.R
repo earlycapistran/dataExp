@@ -1,7 +1,7 @@
-  tests_variance <- function(data, data_var, group_var) {
+tests_variance <- function(data, data_var, group_var) {
   # Load library
   library("car")
-    
+
     # Run tests ---
   
     # Run Bartlett test
@@ -20,6 +20,13 @@
     # Insert spaces between test print-outs for legibility
     cat("\n", "\n", "---------------------" , "\n", "\n")
     print(myLevene)
+
+    # Make simple plots ---
+    boxplot(data[[data_var]] ~ data[[group_var]], 
+            data = data,
+            xlab = paste(group_var),
+            ylab = paste(data_var),
+            col = factor(group))
   }
   
-  tests_variance(iris, "Sepal.Length", "Species")
+tests_variance(iris, "Sepal.Length", "Species")

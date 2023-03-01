@@ -14,6 +14,8 @@
 #' 
 
 tests_norm <- function(data, variable) {
+  # Load library
+  library("ggpubr")
 
   # Make normality plot ---
   par(mfrow = c(2, 2)) # set up grid
@@ -23,16 +25,13 @@ tests_norm <- function(data, variable) {
   # Make histogram with normality curve ---
   data <- na.omit(data) # Remove missing values
   myhist <- hist(data[[variable]], main = paste("Histogram"),
-                 xlab = paste(variable)) # Make histogram
+                  xlab = paste(variable)) # Make histogram
   
   # Define multiplier to convert density to counts
-  multiplier <- myhist$counts / myhist$density 
-  mydensity <- density(data[[variable]]) 
-  mydensity$y <- mydensity$y * multiplier[1] 
-  
-  # Plot histogram with density curve
-  plot(myhist, main = "Histogram with density curve", xlab = paste(variable))
-  lines(mydensity, col = 4)
+  multiplier <- myhist$counts / myhist$density
+  mydensity <- density(data[[variable]])
+  plot(mydensity, main = "Density plot", xlab = paste(variable))
+  polygon(mydensity, col = "blue")
   
   # Generate normal curve 
   myX <- seq(min(data[[variable]]), max(data[[variable]]), length.out= 100)
@@ -40,7 +39,7 @@ tests_norm <- function(data, variable) {
   mysd <- sd(data[[variable]])
   
   normal <- dnorm(x = myX, mean = mymean, sd = mysd)
-  
+
   # Plot histogram with normal curve
   plot(myhist, main = "Histogram with normal curve", xlab = paste(variable))
   lines(myX, normal * multiplier[1], col = "red")
@@ -51,3 +50,5 @@ tests_norm <- function(data, variable) {
 }
 
 tests_norm(penguins, "body_mass_g")
+tests_norm(iris, "Sepal.Length")
+

@@ -24,15 +24,21 @@ tests_norm <- function(data, variable) {
   
   # Make histogram with normality curve ---
   data <- na.omit(data) # Remove missing values
-  myhist <- hist(data[[variable]], main = paste("Histogram"),
-                  xlab = paste(variable)) # Make histogram
+  myhist <- hist(data[[variable]], 
+                 main = "Histogram with normal curve",
+                 xlab = paste(variable)
+                 ) # Make histogram
   
   # Define multiplier to convert density to counts
   multiplier <- myhist$counts / myhist$density
-  mydensity <- density(data[[variable]])
-  plot(mydensity, main = "Density plot", xlab = paste(variable))
-  polygon(mydensity, col = "blue")
   
+  # Set an approximate value of 1.25 * maximum count to try and make sure
+  # curve fits in y-axis
+  yMax <- (1.25*(max(myhist$counts)))
+  
+  # Plot with adjusted axes
+  plot(myhist, ylim = c(min(myhist$counts), yMax))
+
   # Generate normal curve 
   myX <- seq(min(data[[variable]]), max(data[[variable]]), length.out= 100)
   mymean <- mean(data[[variable]])
@@ -41,14 +47,16 @@ tests_norm <- function(data, variable) {
   normal <- dnorm(x = myX, mean = mymean, sd = mysd)
 
   # Plot histogram with normal curve
-  plot(myhist, main = "Histogram with normal curve", xlab = paste(variable))
+  #plot(myhist, main = "Histogram with normal curve", xlab = paste(variable))
   lines(myX, normal * multiplier[1], col = "red")
+  
+  # Make density plot
+  mydensity <- density(data[[variable]])
+  plot(mydensity, main = "Density plot", xlab = paste(variable))
+  polygon(mydensity, col = "blue")
   
   # Run normality tests ----
   norm_test <- shapiro.test(data[[variable]])
   print(norm_test)
 }
-
-tests_norm(penguins, "body_mass_g")
-tests_norm(iris, "Sepal.Length")
 

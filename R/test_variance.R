@@ -9,8 +9,7 @@ tests_variance <- function(df, data_var, group_var) {
   # Deparse variable names
   data_var <- deparse(substitute(data_var))
   group_var <- deparse(substitute(group_var))
-  print(data.class(data_var))
-  
+
     # Run Levene Test
     myLevene <- car::leveneTest(y = df[[data_var]],
                                 group = df[[group_var]])

@@ -7,7 +7,7 @@
 #' histogram, and histogram with normality curve.
 #' 
 #' @param df A dataframe
-#' @param var1 Variable name passed as a string
+#' @param var1 Variable name
 #' @return A plot grid with normality plot, histogram, density plot, and 
 #' histogram with normality curve. Prints Shapiro-Wilke test results.
 #' @usage 
@@ -16,6 +16,7 @@
 #' 
 
 tests_norm <- function(df, var1) {
+  # Deparse variable name
   var1 <- deparse(substitute(var1))
 
   df <- na.omit(df) # Remove missing values

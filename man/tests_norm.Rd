@@ -8,9 +8,9 @@ histogram, and histogram with normality curve.}
 test_norm(iris, "Sepal.Length")
 }
 \arguments{
-\item{data}{A dataframe}
+\item{df}{A dataframe}
 
-\item{variable}{Variable name passed as a string}
+\item{var1}{Variable name}
 }
 \value{
 A plot grid with normality plot, histogram, density plot, and

@@ -2,8 +2,7 @@
 % Please edit documentation in R/tests_norm.R
 \name{tests_norm}
 \alias{tests_norm}
-\title{Performs Shapiro-Wilk test and makes normality plot (qq), density plot,
-histogram, and histogram with normality curve.}
+\title{Tests normality}
 \usage{
 test_norm(iris, Sepal.Length)
 }

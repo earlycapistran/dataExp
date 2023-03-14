@@ -2,7 +2,7 @@
 % Please edit documentation in R/tests_variance.R
 \name{tests_variance}
 \alias{tests_variance}
-\title{Performs Levene tests and makes boxplots and density plot}
+\title{Tests Variance}
 \usage{
 tests_variance(Sepal.Length, Species)
 }

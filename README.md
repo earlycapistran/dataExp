@@ -1,4 +1,4 @@
-# data_exp
+# dataExp
 
 Simple package for exploratory data analysis
 

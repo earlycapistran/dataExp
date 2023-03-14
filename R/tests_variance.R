@@ -1,3 +1,21 @@
+# =============================================================================
+# Tests Variance
+# earlyc@stanford.edu, March 2023
+# =============================================================================
+
+#' Performs Levene tests and makes boxplots and density plot
+#' 
+#' @param df A dataframe
+#' @param data_var Variable of interest
+#' @param group_var Grouping variable
+#' @return A plot grid with boxplot, boxplot with dots, and density plot. 
+#' Prints Levene test results.
+#' @usage 
+#' tests_variance(Sepal.Length, Species)
+#' @export
+#' 
+
+
 tests_variance <- function(df, data_var, group_var) {
   # Load library
   library("car")

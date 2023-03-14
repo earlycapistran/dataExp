@@ -1,8 +1,43 @@
+# =============================================================================
+# Residual analysis for linear models
+# earlyc@stanford.edu, March 2023
+# =============================================================================
 
-analyse_lm_residuals <- function(myLm) {
+
+#' 
+#' @param lm_object An object of class 'lm' 
+#' @return Residual plots: normality, residuals vs. fitted data, 
+#' autocorrelation (lagged residuals vs. residuals with fitted linear model). 
+#' 
+#' Prints residual tests: Mean zero, Shapiro-Wilk normality test, 
+#' Levene Test for homogeneity of variance, and Run's test for randomness
+#' 
+#' @export
+#' 
+#' @usage
+#' iris_lm <- lm(iris$Sepal.Length, iris$Sepal.Width)
+#' analyse_lm_residuals(iris_lm)
+#' 
+#' @importFrom car leveneTest
+#' @importFrom DescTools RunsTest
+#' @importFrom stats lm
+#' @importFrom stats shapiro.test
+#' @importFrom stats sd
+#' @importFrom stats qqnorm
+#' @importFrom stats qqline
+#' 
+analyse_lm_residuals <- function(lm_object) {
+  # Load libraries
+  library(car)
+  library(DescTools)
+  
+  # Check LM object
+  if (class(lm_object) != "lm") 
+    stop("Use only with 'lm' objects")
+  
 # Load and prepare data --------
-  resi <- myLm$residuals # Store residuals
-  fit <- myLm$fitted.values  # Store fitted values
+  resi <- lm_object$residuals # Store residuals
+  fit <- lm_object$fitted.values  # Store fitted values
   resiLag <- c(resi[-1], NA) # Store lagged residuals
   # Subset residuals by sign
   resiSign <- as.factor(ifelse(resi < 0, "negative", "positive"))
@@ -32,17 +67,19 @@ analyse_lm_residuals <- function(myLm) {
   levene <- car::leveneTest(resi ~ resiSign, data = leveneDf) # Levene
   runs <- DescTools::RunsTest(resi) # Runs
   result <- list(normality = norm, levene = levene, runs = runs)
-  names(result) <- c("Residual Normality Test", "Levene's Test", "Runs Test")
+  names(result) <- c("Residual Normality Test ---", 
+                     "Levene's Test ---", 
+                     "Runs Test ---")
   print(result)
   
   # Run t-test for mean = 0 -------
-  stDev <- stats::sd(resi)
+  stDev <- sd(resi)
   resiMean <- mean(resi)
-  degF <- summary(lm)$df[2] # Get second value from DF printout
+  degF <- summary(lm_object)$df[2] # Get second value from DF printout
   tValue  <- abs(resiMean/stDev)
   pValue <- dt(tValue, df=degF)
-  tResult <- cbind("Residual mean"=resiMean, 
-                   "t-value"=tValue, 
+  tResult <- cbind("Residual mean"=resiMean,
+                   "t-value"=tValue,
                    "p-value"=pValue)
   rownames(tResult) <- c("")
   cat(paste("$ `t-Test for residual mean zero`", "\n"))

@@ -6,6 +6,8 @@
 #' Performs Shapiro-Wilk test and makes normality plot (qq), density plot,
 #' histogram, and histogram with normality curve.
 #' 
+#' @title Tests normality
+#' @name tests_norm
 #' @param df A dataframe
 #' @param var1 Numeric variable
 #' @return A plot grid with normality plot, histogram, density plot, and 

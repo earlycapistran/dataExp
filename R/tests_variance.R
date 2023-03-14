@@ -5,6 +5,8 @@
 
 #' Performs Levene tests and makes boxplots and density plot
 #' 
+#' @title Tests Variance
+#' @name tests_variance
 #' @param df A dataframe
 #' @param data_var Numeric variable
 #' @param group_var Grouping variable (factor)

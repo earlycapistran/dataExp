@@ -2,9 +2,9 @@
 # Residual analysis for linear models
 # earlyc@stanford.edu, March 2023
 # =============================================================================
-
-
 #' 
+#' @title Residual analysis for linear models
+#' @name analyse_lm_residuals
 #' @param lm_object An object of class 'lm' 
 #' @return Residual plots: normality, residuals vs. fitted data, 
 #' autocorrelation (lagged residuals vs. residuals with fitted linear model). 
@@ -26,6 +26,10 @@
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
 #' 
+#' @rdname analyse_lm_residuals
+#' @aliases analyze_lm_residuals
+#' 
+
 analyse_lm_residuals <- function(lm_object) {
   # Load libraries
   library(car)

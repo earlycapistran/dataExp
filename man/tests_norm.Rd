@@ -5,12 +5,12 @@
 \title{Performs Shapiro-Wilk test and makes normality plot (qq), density plot,
 histogram, and histogram with normality curve.}
 \usage{
-test_norm(iris, "Sepal.Length")
+test_norm(iris, Sepal.Length)
 }
 \arguments{
 \item{df}{A dataframe}
 
-\item{var1}{Variable name}
+\item{var1}{Numeric variable}
 }
 \value{
 A plot grid with normality plot, histogram, density plot, and

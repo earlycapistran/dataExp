@@ -6,15 +6,16 @@
 #' Performs Levene tests and makes boxplots and density plot
 #' 
 #' @param df A dataframe
-#' @param data_var Variable of interest
-#' @param group_var Grouping variable
+#' @param data_var Numeric variable
+#' @param group_var Grouping variable (factor)
 #' @return A plot grid with boxplot, boxplot with dots, and density plot. 
 #' Prints Levene test results.
 #' @usage 
 #' tests_variance(Sepal.Length, Species)
 #' @export
 #' 
-
+#' @importFrom car leveneTest
+#' @importFrom gridExtra grid.arrange
 
 tests_variance <- function(df, data_var, group_var) {
   # Load library

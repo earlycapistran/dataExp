@@ -7,13 +7,17 @@
 #' histogram, and histogram with normality curve.
 #' 
 #' @param df A dataframe
-#' @param var1 Variable name
+#' @param var1 Numeric variable
 #' @return A plot grid with normality plot, histogram, density plot, and 
 #' histogram with normality curve. Prints Shapiro-Wilke test results.
 #' @usage 
-#' test_norm(iris, "Sepal.Length")
+#' test_norm(iris, Sepal.Length)
 #' @export
 #' 
+#' @importFrom stats shapiro.test
+#' @importFrom stats sd
+#' @importFrom stats qqnorm
+#' @importFrom stats qqline
 
 tests_norm <- function(df, var1) {
   # Deparse variable name

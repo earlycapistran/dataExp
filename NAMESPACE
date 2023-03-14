@@ -2,3 +2,9 @@
 
 export(tests_norm)
 export(tests_variance)
+importFrom(car,leveneTest)
+importFrom(gridExtra,grid.arrange)
+importFrom(stats,qqline)
+importFrom(stats,qqnorm)
+importFrom(stats,sd)
+importFrom(stats,shapiro.test)

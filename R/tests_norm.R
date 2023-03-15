@@ -33,7 +33,7 @@ tests_norm <- function(df, var1) {
   
   # Make histogram with normality curve ---
   myhist <- hist(df[[var1]], 
-                 main = "Histogram with normal curve",
+                 main = "Histogram",
                  xlab = paste(var1)
                  ) # Make histogram
   

@@ -45,7 +45,10 @@ tests_norm <- function(df, var1) {
   yMax <- (1.25*(max(myhist$counts)))
   
   # Plot with adjusted axes
-  plot(myhist, ylim = c(min(myhist$counts), yMax))
+  plot(myhist, 
+       main = "Histogram with normal curve", 
+       ylim = c(min(myhist$counts), yMax),
+       xlab = paste(var1))
 
   # Generate normal curve 
   myX <- seq(min(df[[var1]]), max(df[[var1]]), length.out= 100)
@@ -55,7 +58,6 @@ tests_norm <- function(df, var1) {
   normal <- dnorm(x = myX, mean = mymean, sd = mysd)
 
   # Plot histogram with normal curve
-  #plot(myhist, main = "Histogram with normal curve", xlab = paste(var1))
   lines(myX, normal * multiplier[1], col = "red")
   
   # Make density plot

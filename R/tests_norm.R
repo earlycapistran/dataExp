@@ -24,6 +24,13 @@
 tests_norm <- function(df, var1) {
   # Deparse variable name
   var1 <- deparse(substitute(var1))
+  
+    stopifnot(
+      is.data.frame(df),
+      is.numeric(df[[var1]]),
+      !anyNA(df[[var1]])
+    )
+
 
   df <- na.omit(df) # Remove missing values
   # Make normality plot ---

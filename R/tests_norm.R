@@ -5,74 +5,64 @@
 
 #' Performs Shapiro-Wilk test and makes normality plot (qq), density plot,
 #' histogram, and histogram with normality curve.
-#' 
 #' @title Tests normality
 #' @name tests_norm
 #' @param df A dataframe
-#' @param var1 Numeric variable
-#' @return A plot grid with normality plot, histogram, density plot, and 
+#' @param x A dataframe column with numeric values
+#' @value A plot grid with normality plot, histogram, density plot, and
 #' histogram with normality curve. Prints Shapiro-Wilke test results.
-#' @usage 
-#' test_norm(iris, Sepal.Length)
+#' @usage
+#' tests_norm(iris, Sepal.Length)
 #' @export
-#' 
 #' @importFrom stats shapiro.test
 #' @importFrom stats sd
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
 
-tests_norm <- function(df, var1) {
+tests_norm <- function(df, x) {
   # Deparse variable name
-  var1 <- deparse(substitute(var1))
-  
-    stopifnot(
-      is.data.frame(df),
-      is.numeric(df[[var1]]),
-      !anyNA(df[[var1]])
-    )
+  x <- deparse(substitute(x))
 
+  stopifnot(
+    is.data.frame(df),
+    is.numeric(df[[x]]),
+    !anyNA(df[[x]])
+  )
 
   df <- na.omit(df) # Remove missing values
   # Make normality plot ---
   par(mfrow = c(2, 2)) # set up grid
-  qqnorm(df[[var1]])
-  qqline(df[[var1]], col = "red")
-  
+  qqnorm(df[[x]])
+  qqline(df[[x]], col = "red")
+
   # Make histogram with normality curve ---
-  myhist <- hist(df[[var1]], 
-                 main = "Histogram",
-                 xlab = paste(var1)
-                 ) # Make histogram
-  
+  myhist <- hist(df[[x]], # Make base histogram
+    main = "Histogram",
+    xlab = paste(x)
+  )
   # Define multiplier to convert density to counts
   multiplier <- myhist$counts / myhist$density
-  
   # Set an approximate value of 1.25 * maximum count to try and make sure
-  # curve fits in y-axis
-  yMax <- (1.25*(max(myhist$counts)))
-  
+  # curve fits in y-axis.
+  y_max <- (1.25 * (max(myhist$counts)))
   # Plot with adjusted axes
-  plot(myhist, 
-       main = "Histogram with normal curve", 
-       ylim = c(min(myhist$counts), yMax),
-       xlab = paste(var1))
-
-  # Generate normal curve 
-  myX <- seq(min(df[[var1]]), max(df[[var1]]), length.out= 100)
-  mymean <- mean(df[[var1]])
-  mysd <- sd(df[[var1]])
-  
-  normal <- dnorm(x = myX, mean = mymean, sd = mysd)
-
+  plot(myhist,
+    main = "Histogram with normal curve",
+    ylim = c(min(myhist$counts), y_max),
+    xlab = paste(x)
+  )
+  # Generate normal curve
+  my_x <- seq(min(df[[x]]), max(df[[x]]), length.out = 100)
+  my_mean <- mean(df[[x]])
+  my_sd <- sd(df[[x]])
+  normal <- dnorm(x = my_x, mean = my_mean, sd = my_sd)
   # Plot histogram with normal curve
-  lines(myX, normal * multiplier[1], col = "red")
-  
+  lines(my_x, normal * multiplier[1], col = "red")
   # Make density plot
-  mydensity <- density(df[[var1]])
-  plot(mydensity, main = "Density plot", xlab = paste(var1))
-  polygon(mydensity, col = "blue")
-  
+  my_density <- density(df[[x]])
+  plot(my_density, main = "Density plot", xlab = paste(x))
+  polygon(my_density, col = "blue")
   # Run normality tests ----
-  norm_test <- shapiro.test(df[[var1]])
+  norm_test <- shapiro.test(df[[x]])
   print(norm_test)
 }

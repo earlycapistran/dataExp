@@ -9,9 +9,9 @@ tests_variance(Sepal.Length, Species)
 \arguments{
 \item{df}{A dataframe}
 
-\item{data_var}{Numeric variable}
+\item{data_var}{A dataframe column with numeric values}
 
-\item{group_var}{Grouping variable (factor)}
+\item{group_var}{A dataframe column with a grouping variable (factor)}
 }
 \value{
 A plot grid with boxplot, boxplot with dots, and density plot.

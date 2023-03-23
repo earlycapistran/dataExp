@@ -4,12 +4,12 @@
 \alias{tests_norm}
 \title{Tests normality}
 \usage{
-test_norm(iris, Sepal.Length)
+tests_norm(iris, Sepal.Length)
 }
 \arguments{
 \item{df}{A dataframe}
 
-\item{var1}{Numeric variable}
+\item{x}{A dataframe column with numeric values}
 }
 \value{
 A plot grid with normality plot, histogram, density plot, and

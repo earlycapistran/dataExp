@@ -9,7 +9,7 @@
 #' @name tests_norm
 #' @param df A dataframe
 #' @param x A dataframe column with numeric values
-#' @value A plot grid with normality plot, histogram, density plot, and
+#' @returns A plot grid with normality plot, histogram, density plot, and
 #' histogram with normality curve. Prints Shapiro-Wilke test results.
 #' @usage
 #' tests_norm(iris, Sepal.Length)

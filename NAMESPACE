@@ -2,6 +2,7 @@
 
 export(analyseGlmResiduals)
 export(analyse_lm_residuals)
+export(get_r2)
 export(tests_norm)
 export(tests_variance)
 importFrom(DescTools,RunsTest)
@@ -17,3 +18,4 @@ importFrom(stats,qqnorm)
 importFrom(stats,residuals)
 importFrom(stats,sd)
 importFrom(stats,shapiro.test)
+importFrom(stats,var)

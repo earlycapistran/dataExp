@@ -8,7 +8,7 @@ a normality plot, residuals vs. fitted, and a lag-plot with a trend line
 provides a Shapiro-Wilk normality test, Levene test for homogeneity of
 variance, a Runs test for randomness, and a t-test for mean zero.}
 \usage{
-analyseNlsResiduals(glm_object)
+analyse_glm_residuals(glm_object)
 }
 \arguments{
 \item{glm_object}{}

@@ -39,7 +39,7 @@
 # .............................................................................
 
 # To run this function, you must have car, and DescTools installed
-analyseGlmResiduals <- function(glm_object) {
+analyse_glm_residuals <- function(glm_object) {
   library(broom)
   # Load and prepare data -----------------------------------------------------
   resi <- glm_object$residuals

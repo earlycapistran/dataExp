@@ -19,7 +19,7 @@
 #' @export
 #' 
 #' @usage
-#' analyseNlsResiduals(glm_object)
+#' analyse_glm_residuals(glm_object)
 #' 
 #' @importFrom magrittr %>% 
 #' @importFrom car leveneTest

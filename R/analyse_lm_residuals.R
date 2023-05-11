@@ -38,7 +38,7 @@ analyse_lm_residuals <- function(lm_object) {
   library(DescTools)
   
   # Check LM object
-  if (class(lm_object) != "lm") 
+  inherits (class(lm_object) != "lm") 
     stop("Use only with 'lm' objects")
   
 # Load and prepare data --------

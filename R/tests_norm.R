@@ -19,7 +19,6 @@
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
 #' @importFrom stats density
-#' @importFrom stats stats
 #' @importFrom stats na.omit
 #' @importFrom graphics par
 #' @importFrom graphics hist

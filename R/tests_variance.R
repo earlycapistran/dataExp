@@ -18,7 +18,6 @@
 #'
 #' @importFrom car leveneTest
 #' @importFrom gridExtra grid.arrange
-#' @importFrom stats stats
 #' @importFrom stats na.omit
 #' @importFrom graphics par
 

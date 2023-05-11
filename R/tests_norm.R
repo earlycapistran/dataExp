@@ -19,11 +19,12 @@
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
 #' @importFrom stats density
+#' @importFrom stats dnorm
 #' @importFrom stats na.omit
 #' @importFrom graphics par
 #' @importFrom graphics hist
 #' @importFrom graphics polygon
-#' 
+#' @importFrom graphics lines
 
 tests_norm <- function(df, x) {
   # Deparse variable name
@@ -37,12 +38,12 @@ tests_norm <- function(df, x) {
 
   df <- na.omit(df) # Remove missing values
   # Make normality plot ---
-  par(mfrow = c(2, 2)) # set up grid
-  qqnorm(df[[x]])
-  qqline(df[[x]], col = "red")
+  graphics::par(mfrow = c(2, 2)) # set up grid
+  graphics::qqnorm(df[[x]])
+  graphics::qqline(df[[x]], col = "red")
 
   # Make histogram with normality curve ---
-  myhist <- hist(df[[x]], # Make base histogram
+  myhist <- graphics::hist(df[[x]], # Make base histogram
     main = "Histogram",
     xlab = paste(x)
   )
@@ -52,23 +53,28 @@ tests_norm <- function(df, x) {
   # curve fits in y-axis.
   y_max <- (1.25 * (max(myhist$counts)))
   # Plot with adjusted axes
-  plot(myhist,
+  graphics::plot(myhist,
     main = "Histogram with normal curve",
     ylim = c(min(myhist$counts), y_max),
     xlab = paste(x)
   )
   # Generate normal curve
   my_x <- seq(min(df[[x]]), max(df[[x]]), length.out = 100)
-  my_mean <- mean(df[[x]])
-  my_sd <- sd(df[[x]])
-  normal <- dnorm(x = my_x, mean = my_mean, sd = my_sd)
+  my_mean <- stats::mean(df[[x]])
+  my_sd <- stats::sd(df[[x]])
+  normal <- stats::dnorm(x = my_x, 
+                         mean = my_mean, 
+                         sd = my_sd)
   # Plot histogram with normal curve
-  lines(my_x, normal * multiplier[1], col = "red")
+  graphics::lines(my_x, normal * multiplier[1], 
+                  col = "red")
   # Make density plot
   my_density <- density(df[[x]])
-  plot(my_density, main = "Density plot", xlab = paste(x))
-  polygon(my_density, col = "blue")
+  graphics::plot(my_density, 
+                 main = "Density plot", 
+                 xlab = paste(x))
+  graphics::polygon(my_density, col = "blue")
   # Run normality tests ----
-  norm_test <- shapiro.test(df[[x]])
+  norm_test <- stats::shapiro.test(df[[x]])
   print(norm_test)
 }

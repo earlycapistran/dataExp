@@ -48,28 +48,30 @@ analyse_glm_residuals <- function(glm_object) {
   resDf <- as.data.frame(resi)
   fit <- glm_object$fitted.values
   # Subset residuals by sign
-  resDf$sign <- as.factor(ifelse(resDf < 0, "negative", "positive"))
+  resDf$sign <- as.factor(ifelse(resDf < 0, 
+                                 "negative", 
+                                 "positive"))
   # Store lagged residuals
   resDf$resi_lag <- c(resDf$resi[-1], NA) 
   
   # Make plots ----------------------------------------------------------------
   # Normality
-  par(mfrow = c(2, 2))
-  qqnorm(resDf$resi)
-  qqline(resDf$resi)
+  graphics::par(mfrow = c(2, 2))
+  graphics::qqnorm(resDf$resi)
+  graphics::qqline(resDf$resi)
   # Residual vs. fitted values
-  res.plot <- plot(x = fit, y = resi,
+  res.plot <- graphics::plot(x = fit, y = resi,
        xlab = "Fitted values", 
        ylab = "Residuals",
        main = "Residuals versus fitted values")
-  abline(h=0)
+  graphics::abline(h=0)
   # Lag plot with trend line (residuals vs. lagged residuals)
-  plot(resDf$resi, c(resDf$resi[-1], +  NA),
+ graphics::plot(resDf$resi, c(resDf$resi[-1], +  NA),
        xlab = "Residuals", 
        ylab = "Lagged residuals",
        main = "Autocorrelation") 
-  abline(lm(resDf$resi ~ resDf$resi_lag))
-  par(mfrow = c(1, 1)) 
+  graphics::abline(lm(resDf$resi ~ resDf$resi_lag))
+  graphics::par(mfrow = c(1, 1)) 
   
   # Run tests -----------------------------------------------------------------
   norm <- stats::shapiro.test(resDf$resi)
@@ -80,8 +82,8 @@ analyse_glm_residuals <- function(glm_object) {
   print(result)
   
   # Run t-test for mean = 0 ---------------------------------------------------
-  stDev <- sd(resDf$resi)
-  mean <- mean(resDf$resi)
+  stDev <- stats::sd(resDf$resi)
+  mean <- stats::mean(resDf$resi)
   degF <- broom::glance(glm_object)$df.null
   t.value  <- abs(mean/stDev)
   p.value <- dt(t.value, df=degF)

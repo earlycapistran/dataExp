@@ -38,7 +38,7 @@ analyse_lm_residuals <- function(lm_object) {
   library(DescTools)
   
   # Check LM object
-  inherits (class(lm_object) != "lm") 
+  inherits(class(lm_object) != "lm") 
     stop("Use only with 'lm' objects")
   
 # Load and prepare data --------
@@ -51,22 +51,22 @@ analyse_lm_residuals <- function(lm_object) {
   leveneDf <- data.frame(resi, resiSign)
   
 # Make plots --------
-  par(mfrow = c(2, 2))
+  graphics::par(mfrow = c(2, 2))
   stats::qqnorm(resi)
   stats::qqline(resi, col = "red")
   # Residual vs. fitted values
-  resPlot <- plot(x = fit, y = resi,
+  resPlot <- graphics::plot(x = fit, y = resi,
                    xlab = "Fitted values", 
                    ylab = "Residuals",
                    main = "Residuals versus fitted values")
-  abline(h=0, col = "red")
+  graphics::abline(h=0, col = "red")
   # Lag plot with trend line (residuals vs. lagged residuals)
-  plot(resi, c(resi[-1], +  NA),
+  graphics::plot(resi, c(resi[-1], +  NA),
        xlab = "Residuals", 
        ylab = "Lagged residuals",
        main = "Autocorrelation") 
-  abline(lm(resi ~ resiLag), col = "red")
-  par(mfrow = c(1, 1)) 
+  graphics::abline(lm(resi ~ resiLag), col = "red")
+  graphics::par(mfrow = c(1, 1)) 
   
   # Run tests -----------------------------------------------------------------
   norm <- stats::shapiro.test(resi) #Shapiro-Wilke
@@ -79,8 +79,8 @@ analyse_lm_residuals <- function(lm_object) {
   print(result)
   
   # Run t-test for mean = 0 -------
-  stDev <- sd(resi)
-  resiMean <- mean(resi)
+  stDev <- stats::sd(resi)
+  resiMean <- stats::mean(resi)
   degF <- summary(lm_object)$df[2] # Get second value from DF printout
   tValue  <- abs(resiMean/stDev)
   pValue <- dt(tValue, df=degF)

@@ -53,7 +53,7 @@ tests_variance <- function(df, data_var, group_var) {
   par(mfrow = c(2, 2)) # set up grid
 
   # Boxplot with ggplot
-  box_plot <- ggplot(data = df, aes(
+  box_plot <- ggplot2::ggplot(data = df, aes(
     x = .data[[group_var]],
     y = .data[[data_var]],
     fill = .data[[group_var]]
@@ -63,7 +63,7 @@ tests_variance <- function(df, data_var, group_var) {
 
   # Make a boxplot with dots
   box_dots <- box_plot +
-    geom_dotplot(
+    ggplot2::geom_dotplot(
       binaxis = "y",
       stackdir = "center",
       dotsize = 1,
@@ -72,12 +72,14 @@ tests_variance <- function(df, data_var, group_var) {
     )
 
   # Density plot by group
-  dens_plot <- ggplot(data = df, aes(
+  dens_plot <- ggplot2::ggplot(data = df, aes(
     x = .data[[data_var]],
     fill = .data[[group_var]],
   )) +
     geom_density(alpha = 0.5)
 
   # Arrange the plots on a grid
-  gridExtra::grid.arrange(box_plot, box_dots, dens_plot, nrow = 2)
+  gridExtra::grid.arrange(box_plot, 
+                          box_dots, 
+                          dens_plot, nrow = 2)
 }

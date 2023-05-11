@@ -25,6 +25,8 @@
 #' @importFrom stats sd
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
+#' @importFrom graphics abline
+#' @importFrom graphics par
 #' 
 #' @rdname analyse_lm_residuals
 #' @aliases analyze_lm_residuals

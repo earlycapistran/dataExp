@@ -18,6 +18,9 @@
 #'
 #' @importFrom car leveneTest
 #' @importFrom gridExtra grid.arrange
+#' @importFrom stats stats
+#' @importFrom stats na.omit
+#' @importFrom graphics par
 
 tests_variance <- function(df, data_var, group_var) {
   # Load library

@@ -32,6 +32,8 @@
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
 #' @importFrom broom glance
+#' @importFrom graphics abline
+#' @importFrom graphics par
 
 
 # .............................................................................

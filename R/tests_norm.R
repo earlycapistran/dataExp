@@ -18,6 +18,13 @@
 #' @importFrom stats sd
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
+#' @importFrom stats density
+#' @importFrom stats stats
+#' @importFrom stats na.omit
+#' @importFrom graphics par
+#' @importFrom graphics hist
+#' @importFrom graphics polygon
+#' 
 
 tests_norm <- function(df, x) {
   # Deparse variable name

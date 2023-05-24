@@ -37,9 +37,10 @@ analyse_lm_residuals <- function(lm_object) {
   library(car)
   library(DescTools)
   
-  # Check LM object
-  inherits(class(lm_object) != "lm") 
-    stop("Use only with 'lm' objects")
+  # Check if the input is an lm object
+  if (!inherits(model, "lm")) {
+    stop("Input model is not of class 'lm'.")
+  }
   
 # Load and prepare data --------
   resi <- lm_object$residuals # Store residuals

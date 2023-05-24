@@ -13,7 +13,7 @@
 #' @return A plot grid with boxplot, boxplot with dots, and density plot.
 #' Prints Levene test results.
 #' @usage
-#' tests_variance(Sepal.Length, Species)
+#' tests_variance(iris, Sepal.Length, Species)
 #' @export
 #'
 #' @importFrom car leveneTest

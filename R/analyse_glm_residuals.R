@@ -55,6 +55,7 @@ analyse_glm_residuals <- function(glm_object) {
   resDf$resi_lag <- c(resDf$resi[-1], NA) 
   
   # Make plots ----------------------------------------------------------------
+  par(mar = c(1, 1, 1, 1)) # Adjust margins
   # Normality
   graphics::par(mfrow = c(2, 2))
   stats::qqnorm(resDf$resi)

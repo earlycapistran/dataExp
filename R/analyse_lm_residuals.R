@@ -38,7 +38,7 @@ analyse_lm_residuals <- function(lm_object) {
   library(DescTools)
   
   # Check if the input is an lm object
-  if (!inherits(model, "lm")) {
+  if (!inherits(lm_object, "lm")) {
     stop("Input model is not of class 'lm'.")
   }
   
@@ -52,6 +52,8 @@ analyse_lm_residuals <- function(lm_object) {
   leveneDf <- data.frame(resi, resiSign)
   
 # Make plots --------
+  par(mar = c(1, 1, 1, 1)) # Adjust margins
+  
   graphics::par(mfrow = c(2, 2))
   stats::qqnorm(resi)
   stats::qqline(resi, col = "red")

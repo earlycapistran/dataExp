@@ -38,9 +38,10 @@ tests_norm <- function(df, x) {
 
   df <- na.omit(df) # Remove missing values
   # Make normality plot ---
+  par(mar = c(1, 1, 1, 1)) # Adjust margins
   graphics::par(mfrow = c(2, 2)) # set up grid
-  graphics::qqnorm(df[[x]])
-  graphics::qqline(df[[x]], col = "red")
+  stats::qqnorm(df[[x]])
+  stats::qqline(df[[x]], col = "red")
 
   # Make histogram with normality curve ---
   myhist <- graphics::hist(df[[x]], # Make base histogram
@@ -60,7 +61,7 @@ tests_norm <- function(df, x) {
   )
   # Generate normal curve
   my_x <- seq(min(df[[x]]), max(df[[x]]), length.out = 100)
-  my_mean <- stats::mean(df[[x]])
+  my_mean <- mean(df[[x]])
   my_sd <- stats::sd(df[[x]])
   normal <- stats::dnorm(x = my_x, 
                          mean = my_mean, 

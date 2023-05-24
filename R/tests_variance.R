@@ -50,6 +50,7 @@ tests_variance <- function(df, data_var, group_var) {
   print(my_levene)
 
   # Make simple plots ---
+  par(mar = c(1, 1, 1, 1)) # Adjust margins
   par(mfrow = c(2, 2)) # set up grid
 
   # Boxplot with ggplot
@@ -58,8 +59,8 @@ tests_variance <- function(df, data_var, group_var) {
     y = .data[[data_var]],
     fill = .data[[group_var]]
   )) +
-    geom_boxplot(outlier.size = 2) +
-    theme_classic()
+    ggplot2::geom_boxplot(outlier.size = 2) +
+    ggplot2::theme_classic()
 
   # Make a boxplot with dots
   box_dots <- box_plot +
@@ -76,7 +77,7 @@ tests_variance <- function(df, data_var, group_var) {
     x = .data[[data_var]],
     fill = .data[[group_var]],
   )) +
-    geom_density(alpha = 0.5)
+    ggplot2::geom_density(alpha = 0.5)
 
   # Arrange the plots on a grid
   gridExtra::grid.arrange(box_plot, 

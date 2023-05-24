@@ -77,9 +77,11 @@ analyse_glm_residuals <- function(glm_object) {
   # Run tests -----------------------------------------------------------------
   norm <- stats::shapiro.test(resDf$resi)
   levene <- car::leveneTest(resDf$resi ~ sign, data = resDf)
-  runs <- DescTools::RunsTest(resDf$resi)
-  result <- list(normality = norm, levene = levene, runs = runs)
-  names(result) <- c("Residual Normality Test", "Levene's Test", "Runs Test")
+  durbin <- car::durbinWatsonTest(glm_object)
+  result <- list(normality = norm, levene = levene, durbin = durbin)
+  names(result) <- c("Residual Normality Test", 
+                     "Levene's Test", 
+                     "Durbin-Watson Test")
   print(result)
   
   # Run t-test for mean = 0 ---------------------------------------------------

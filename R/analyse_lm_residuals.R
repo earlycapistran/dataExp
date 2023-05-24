@@ -53,7 +53,6 @@ analyse_lm_residuals <- function(lm_object) {
   
 # Make plots --------
   par(mar = c(1, 1, 1, 1)) # Adjust margins
-  
   graphics::par(mfrow = c(2, 2))
   stats::qqnorm(resi)
   stats::qqline(resi, col = "red")
@@ -74,11 +73,11 @@ analyse_lm_residuals <- function(lm_object) {
   # Run tests -----------------------------------------------------------------
   norm <- stats::shapiro.test(resi) #Shapiro-Wilke
   levene <- car::leveneTest(resi ~ resiSign, data = leveneDf) # Levene
-  runs <- DescTools::RunsTest(resi) # Runs
-  result <- list(normality = norm, levene = levene, runs = runs)
+  durbin <- car::durbinWatsonTest(lm_object) # Durbin-Watson
+  result <- list(normality = norm, levene = levene, durbin = durbin)
   names(result) <- c("Residual Normality Test ---", 
                      "Levene's Test ---", 
-                     "Runs Test ---")
+                     "Durbin-Watson Test ---")
   print(result)
   
   # Run t-test for mean = 0 -------

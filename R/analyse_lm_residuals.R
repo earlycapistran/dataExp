@@ -80,7 +80,7 @@ analyse_lm_residuals <- function(lm_object) {
   
   # Run t-test for mean = 0 -------
   stDev <- stats::sd(resi)
-  resiMean <- stats::mean(resi)
+  resiMean <- mean(resi)
   degF <- summary(lm_object)$df[2] # Get second value from DF printout
   tValue  <- abs(resiMean/stDev)
   pValue <- dt(tValue, df=degF)

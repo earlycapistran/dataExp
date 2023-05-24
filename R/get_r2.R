@@ -28,5 +28,5 @@ get_r2 <- function(model_object) {
   )
   return(r_sq)
   # Print
-  cat("R²:", "\n", paste(r_sq))
+  cat("R-squared:", "\n", paste(r_sq))
 }

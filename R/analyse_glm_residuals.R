@@ -57,8 +57,8 @@ analyse_glm_residuals <- function(glm_object) {
   # Make plots ----------------------------------------------------------------
   # Normality
   graphics::par(mfrow = c(2, 2))
-  graphics::qqnorm(resDf$resi)
-  graphics::qqline(resDf$resi)
+  stats::qqnorm(resDf$resi)
+  stats::qqline(resDf$resi)
   # Residual vs. fitted values
   res.plot <- graphics::plot(x = fit, y = resi,
        xlab = "Fitted values", 
@@ -83,7 +83,7 @@ analyse_glm_residuals <- function(glm_object) {
   
   # Run t-test for mean = 0 ---------------------------------------------------
   stDev <- stats::sd(resDf$resi)
-  mean <- stats::mean(resDf$resi)
+  mean <- mean(resDf$resi)
   degF <- broom::glance(glm_object)$df.null
   t.value  <- abs(mean/stDev)
   p.value <- dt(t.value, df=degF)

@@ -4,7 +4,7 @@
 \alias{tests_variance}
 \title{Tests Variance}
 \usage{
-tests_variance(Sepal.Length, Species)
+tests_variance(iris, Sepal.Length, Species)
 }
 \arguments{
 \item{df}{A dataframe}
